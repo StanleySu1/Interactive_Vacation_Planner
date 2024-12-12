@@ -10,12 +10,33 @@ script_dir = os.path.dirname(__file__)
 amsterdam_path = os.path.join(script_dir, "../data/sources/yelp/amsterdam.txt")
 amsterdam_path = os.path.abspath(amsterdam_path)
 
-output_path = os.path.join(script_dir, "../data/scraped/yelp/amsterdam.jsonl")  # Output JSONL file
+barcelona_path = os.path.join(script_dir, "../data/sources/yelp/barcelona.txt")
+barcelona_path = os.path.abspath(barcelona_path)
+
+lisbon_path = os.path.join(script_dir, "../data/sources/yelp/lisbon.txt")
+lisbon_path = os.path.abspath(lisbon_path)
+
+london_path = os.path.join(script_dir, "../data/sources/yelp/london.txt")
+london_path = os.path.abspath(london_path)
+
+nyc_path = os.path.join(script_dir, "../data/sources/yelp/nyc.txt")
+nyc_path = os.path.abspath(nyc_path)
+
+paris_path = os.path.join(script_dir, "../data/sources/yelp/paris.txt")
+paris_path = os.path.abspath(paris_path)
+
+rome_path = os.path.join(script_dir, "../data/sources/yelp/rome.txt")
+rome_path = os.path.abspath(rome_path)
+
+vegas_path = os.path.join(script_dir, "../data/sources/yelp/vegas.txt")
+vegas_path = os.path.abspath(vegas_path)
+
+output_path = os.path.join(script_dir, "../data/scraped/yelp/vegas.jsonl")  # Output JSONL file
 output_path = os.path.abspath(output_path)
 
 # Open the output file for writing
 with open(output_path, 'w') as output_file:
-    with open(amsterdam_path, 'r') as file:
+    with open(vegas_path, 'r') as file:
         for line in file:
             r = requests.get(line.strip())
             soup = BeautifulSoup(r.text, 'html.parser')
@@ -73,7 +94,7 @@ with open(output_path, 'w') as output_file:
 
 
             #Extract number of reviews 
-            a_tag = soup.find('a', class_="y-css-1ijjqcc")
+            a_tag = soup.find('a', class_="y-css-1x1e1r2")
             reviews_text = a_tag.text.strip()  # "(1.2k reviews)"
             reviews_count = reviews_text.split()[0][1:]
             try: 
