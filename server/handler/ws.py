@@ -7,6 +7,7 @@ from ollama import AsyncClient
 import handler.search as search
 
 # Fetch attractions for a city (if applicable) and make a RAG prompt
+# Returns the search parameters
 def augment_city_search(messages):
   if messages[-1]["role"] == "user":
     # Save previous prompt
@@ -49,12 +50,15 @@ If the request does not refer to a city and/or interest, just say this:
           "role": "system",
           "content": text,
         })
+        messages[-1] = last_message
+        # Return the search parameters
+        return data
     except:
       pass
 
     # Replace last prompt with the original one
     messages[-1] = last_message
-  return messages
+  return None
 
 # Get a list of attractions in JSON format that were mentioned so far
 def get_mentioned_cities(messages):
@@ -97,7 +101,16 @@ async def handle(scope, receive, send):
     messages = json_data.get("messages")
 
     # Apply RAG for attractions in a city
-    augment_city_search(messages)
+    search_params = augment_city_search(messages)
+    # Send back search parameters to the client
+    if search_params:
+      await send({
+        "type": "websocket.send",
+        "text": json.dumps({
+          "search": search_params
+        })
+      })
+      await asyncio.sleep(0)
 
     # Stream
     full_text = ""
