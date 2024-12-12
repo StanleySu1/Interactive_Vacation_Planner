@@ -8,7 +8,7 @@ import { ChatOutput } from "./ChatOutput";
 import { PlaneIcon } from "./icons";
 
 export default function App() {
-  const [promptInput, setPromptInput] = useState("I'd like to find out more about Paris");
+  const [promptInput, setPromptInput] = useState("Plan trip to Paris focus on art and food");
   const [searchParams, setSearchParams] = useState(null);
   const [stream, setStream] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -17,11 +17,11 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       "role": "system",
-      "content": "You are a travel concierge, adept at recommending activities for a visitor. You will enter into a conversation with the traveller.  Start a friendly conversation by introducing yourself. Then ask the following questions to find out where the traveller is going to and what types of activities they're interested in."
+      "content": "Your goal is to create a complete itinerary for their trip. When the traveler specifies a city and their interests, generate a detailed day-by-day itinerary including attraction names, descriptions, and estimated time for each activity. Ensure the itinerary is logical, well-paced, and includes recommendations for meals or rest breaks. You only know have information on the following cities:Amsterdam, Barcelona, Dubai, Lisbon, Lonndon, Marrakech, New York City, Paris, Rome, Las Vegas"
     },
     {
       "role": "assistant",
-      "content": "How may I assist you?"
+      "content": "Where would you like to go and what are you interested in doing?"
     },
   ]);
 
