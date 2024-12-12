@@ -9,14 +9,9 @@ from pydantic_core import from_json
 
 PATH = "data/scraped/yelp"
 
-connection = sqlite3.connect("data/attractions_yelp.db")
+connection = sqlite3.connect("data/attractions.db")
+
 cursor = connection.cursor()
-cursor.execute("DROP TABLE IF EXISTS city")
-cursor.execute("DROP TABLE IF EXISTS attraction")
-cursor.execute("DROP TABLE IF EXISTS review")
-cursor.execute("CREATE TABLE city (id PRIMARY KEY, name TEXT, key TEXT)")
-cursor.execute("CREATE TABLE attraction (id PRIMARY KEY, city_id INTEGER, name TEXT, category TEXT, rating NUMBER, hours TEXT, address TEXT, embedding BLOB)")
-cursor.execute("CREATE TABLE review (id PRIMARY KEY, attraction_id INTEGER, review TEXT, rating NUMBER, visited TEXT)")
 
 encoder = SentenceTransformer("all-MiniLM-L6-v2")
 

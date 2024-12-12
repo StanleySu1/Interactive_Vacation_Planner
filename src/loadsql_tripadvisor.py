@@ -39,7 +39,7 @@ unique_review_id = 0
 for (city_id, (key, name)) in enumerate(CITIES):
   print(name)
   cursor.execute("INSERT INTO city VALUES (?,?,?)", (city_id, name, key))
-  with open(os.path.join(PATH, f"{key}.jsonl"), "rt") as file:
+  with open(os.path.join(PATH, f"{key}.jsonl"), "rb") as file:
     for (attraction_id, line) in enumerate(file):
       attraction = Attraction.model_validate(from_json(line))
       embedding = encoder.encode(f"{attraction.name}\n{attraction.category}\n{attraction.description}").tolist()

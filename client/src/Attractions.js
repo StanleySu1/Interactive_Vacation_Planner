@@ -7,24 +7,28 @@ export function AttractionDetails({
   onTellMore,
 }) {
   return attraction && (
-    <div className="m-2 p-2 overflow-y-auto">
-      <div><img src={attraction.image} /></div>
-      <div className="text-lg font-bold">{attraction.name}</div>
-      <div>{attraction.description}</div>
-      <div>{attraction.category}</div>
-      <div>{attraction.rating}</div>
-      <div>Hours: {attraction.hours}</div>
-      <div>{attraction.duration}</div>
-      <div>Address: {attraction.address}</div>
-      <div className="flex flex-row gap-2 mt-2">
-        <a
-          className="border rounded-full px-4 py-2 inline-block cursor-pointer hover:bg-slate-100"
-          onClick={() => onTellMore(attraction.name)}
-        >Tell me more</a>
-        <a
-          className="border rounded-full px-4 py-2 inline-block cursor-pointer hover:bg-slate-100"
-          onClick={onHide}
-        >Done</a>
+    <div className="m-2 p-2 flex flex-col h-full overflow-hidden relative">
+      <div
+        className="grow bg-cover bg-center"
+        style={{"background-image": `url(${attraction.image})`}}
+      />
+      <div className="max-h-[50%] overflow-y-auto">
+        <div className="text-lg font-bold">{attraction.name}</div>
+        <div>{attraction.description}</div>
+        <div>{attraction.category}</div>
+        <div>Hours: {attraction.hours}</div>
+        <div>{attraction.duration}</div>
+        <div>Address: {attraction.address}</div>
+        <div className="flex flex-row gap-2 mt-2">
+          <a
+            className="border rounded-full px-4 py-2 inline-block cursor-pointer hover:bg-slate-100"
+            onClick={() => onTellMore(attraction.name)}
+          >Tell me more</a>
+          <a
+            className="border rounded-full px-4 py-2 inline-block cursor-pointer hover:bg-slate-100"
+            onClick={onHide}
+          >Done</a>
+        </div>
       </div>
     </div>
   );

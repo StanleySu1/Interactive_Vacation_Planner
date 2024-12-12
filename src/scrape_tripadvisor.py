@@ -2,13 +2,17 @@ import os
 import sys
 import json
 from pyquery import PyQuery as pq
+import lxml.html
 
 from model import Review, Attraction
 
 def scrape_tripadvisor(path:str) -> Attraction:
   attraction = Attraction()
 
-  d = pq(filename=path)
+  utf8_parser = lxml.html.HTMLParser(encoding="utf-8")
+  with open(path, "rb") as fh:
+    d = pq(lxml.html.fromstring(fh.read(), parser=utf8_parser))
+  #d = pq(filename=path)
   for b in d("#lithium-root > main > div:nth-child(1) > div.IDaDx.Iwmxp.mvTrV.cyIij.fluiI.SMjpI > div > div > div"):
     attraction.breadcrumbs.append(d(b).text())
   attraction.name = d("#lithium-root > main > div:nth-child(1) > div.hJiTo.z > div.IDaDx.Iwmxp.mvTrV.cyIij.fluiI.SMjpI > header > div.mmBWG > div.ycuCc > div > h1").text()
