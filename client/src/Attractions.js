@@ -12,7 +12,6 @@ export function AttractionDetails({
       <div className="text-lg font-bold">{attraction.name}</div>
       <div>{attraction.description}</div>
       <div>{attraction.category}</div>
-      <div>{attraction.rating}</div>
       <div>Hours: {attraction.hours}</div>
       <div>{attraction.duration}</div>
       <div>Address: {attraction.address}</div>
