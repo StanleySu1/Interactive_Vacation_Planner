@@ -51,7 +51,7 @@ export default function App() {
         const seenIds = new Set();
         for (const attraction of m.attractions) {
           if (!seenIds.has(attraction.id)) {
-            attractions.unshift(attraction);
+            attractions.push(attraction);
             seenIds.add(attraction.id);
           }
         }
