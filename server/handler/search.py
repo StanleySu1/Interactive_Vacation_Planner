@@ -61,13 +61,14 @@ def search_attractions(city: str, interests: str):
     """, (city,))
     for id, description in rows:
         ids.append(id)
-        descriptions.append(description.split())  # Tokenize descriptions for BM25
+        # Tokenize and normalize descriptions (lowercase)
+        descriptions.append(description.lower().split())
 
     # Initialize BM25
     bm25 = BM25(descriptions)
 
-    # Tokenize the interests query
-    query_tokens = interests.split()
+    # Tokenize and normalize the interests query (lowercase)
+    query_tokens = interests.lower().split()
 
     # Rank attractions using BM25
     scores = bm25.get_scores(query_tokens)
@@ -77,9 +78,12 @@ def search_attractions(city: str, interests: str):
         reverse=True
     )
 
+    # Limit to top 10 results
+    top_results = ranked_results[:10]
+
     # Format the results
     results = []
-    for id, score, description in ranked_results:
+    for id, score, description in top_results:
         row = cursor.execute("SELECT name FROM attraction WHERE id = ?", (id,))
         name = row.fetchone()[0]
         results.append({
