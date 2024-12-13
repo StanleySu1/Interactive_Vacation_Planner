@@ -7,6 +7,7 @@
 - Bowen Shan (bs7)
 
 ## Presentation
+[MediaShare](https://mediaspace.illinois.edu/media/t/1_vr1say5h)
 
 ## Description
 Vacation planning can be a complicated and time-consuming process for travelers. This project aims to simplify this process. We built a web application to allow users to interact with a chat bot to help find attractions that a user is interested in.

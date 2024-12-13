@@ -8,7 +8,7 @@ import { ChatOutput } from "./ChatOutput";
 import { PlaneIcon } from "./icons";
 
 export default function App() {
-  const [promptInput, setPromptInput] = useState("Plan trip to Paris focus on art and food");
+  const [promptInput, setPromptInput] = useState("Plan a trip to Paris with a focus on art and food");
   const [searchParams, setSearchParams] = useState(null);
   const [stream, setStream] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -17,7 +17,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       "role": "system",
-      "content": "Your goal is to create a complete itinerary for their trip. When the traveler specifies a city and their interests, generate a detailed day-by-day itinerary including attraction names, descriptions, and estimated time for each activity. Ensure the itinerary is logical, well-paced, and includes recommendations for meals or rest breaks. You only know have information on the following cities:Amsterdam, Barcelona, Dubai, Lisbon, Lonndon, Marrakech, New York City, Paris, Rome, Las Vegas"
+      "content": "Your goal is to create a complete itinerary for their trip. When the traveler specifies a city and their interests, generate a detailed day-by-day itinerary including attraction names, descriptions, and estimated time for each activity. Ensure the itinerary is logical, well-paced, and includes recommendations for meals or rest breaks."
     },
     {
       "role": "assistant",
